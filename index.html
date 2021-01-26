@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+    />
+    <title>Quick Invoice</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <style>
+      body{
+          background: rgb(158, 158, 158);
+          margin:10px 0px;
+          font-family: 'Karla', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6,p{
+          margin-bottom:0px;
+      }
+      .invoice{
+          padding:40px;
+          background-color:#Ffff;
+      }
+      .baseline{
+          display:flex;
+          height:50px;
+          margin-bottom:8vh;
+      }
+      .baseline img{
+          height:50px;
+          width:50px;
+          margin-top:5px;
+      }
+      .baseline .company-name{
+        align-self: flex-end;
+        color: #1C1C1C;
+        font-family: 'Karla', sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 18px;
+        margin-left:20px;
+        text-transform: uppercase;
+      }
+      .invoice .invoice-info{
+        color: #1C1C1C;
+        font-family: 'Karla', sans-serif;;
+        text-align: left;
+        font-size: 15px;
+        margin-bottom:10px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 24px;
+      }
+      .invoice .invoice-info span{
+          font-weight: bold;
+          text-align: left;
+      }
+      .invoice .client-name{
+          font-size: 18px;
+          font-family: 'Karla', sans-serif;
+          color: #1C1C1C;
+          text-align: right;    
+          font-weight: bold;
+      }
+      .invoice .client-info{
+        color: #1C1C1C;
+        font-family: 'Karla', sans-serif;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 24px;
+        text-align: right;
+        font-weight: 400;
+      }
+      .invoice .table{
+          margin-top:10vh;
+          margin-bottom:15vh;
+      }
+      
+      thead{
+        border-bottom:1px solid rgba(168, 163, 163, 0.7);
+      }
+      .table th{
+        color: #A8A3A3;
+        font-family: 'Karla', sans-serif;
+        font-size: 13px;
+        letter-spacing: 0;
+        line-height: 18px;
+        text-transform: capitalize !important;
+      }
+      .table td, .table th{
+          padding:.75rem;
+      }
+      .padding-less{
+          padding-left:0px !important;
+          text-align: left !important;
+          width:45%;
+      }
+      .table thead th{
+          border:none !important;
+          font-family: 'Karla', sans-serif;
+          text-align: right;
+          text-transform: uppercase;
+          font-weight: 300;
+      }
+      .table td, .table th{
+          border:none !important;
+      }
+      .table td{
+        color: #1C1C1C;
+        font-family: 'Karla', sans-serif;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 20px;
+        font-weight: bold;
+        text-align: right;
+      }
+      .table td span{
+          font-weight: normal;
+          margin-top: 5px;
+          display: block;
+      }
+      .footer{
+        background-color: #F1F1F1;
+        padding:15px 30px;
+      }
+      .line{
+          height: 1px;
+          width:100%;
+          background-color: rgba(168, 163, 163, 0.7);
+          margin:10px 0px;
+          display: block;
+      }
+      .thank-you{
+        color: #656565;
+        font-family: 'Karla', sans-serif;
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 18px;
+        text-align: left;
+        font-weight:lighter;
+        margin-bottom:20px;
+      }
+      .company{
+          display:flex;
+          justify-content: center;
+      }
+      .company .company-info{
+          margin-top: 35px;
+        color: #656565;
+        font-family: 'Karla', sans-serif;
+        font-size: 13px;
+        letter-spacing: 0;
+        line-height: 18px;
+        text-align: center;
+        font-weight:lighter;
+      }
+      .company .company-info span{
+          font-weight: bold;
+      }
+      .company .company-info span a{
+          text-decoration: underline;
+          color: #656565;
+        font-family: 'Karla', sans-serif;
+        font-size: 13px;
+        letter-spacing: 0;
+        line-height: 18px;
+        text-align: center;
+        font-weight: normal !important;
+      }
+      .to-right{
+          display:flex;
+          justify-content: flex-end;
+      }
+      .to-right-space{
+          display:flex;
+          justify-content: space-between;
+          margin:7px 0px;
+      }
+      .pay-now{
+        border-radius: 8px;
+        margin-top:5px;
+        margin-bottom:10px;
+        background-color: #1C1C1C;
+        padding:8px 15px;
+        font-size:14px;
+        width:80%;
+        color: #FFFFFF;
+        font-family: 'Karla', sans-serif;
+        letter-spacing: 0;
+        line-height: 18px;
+        text-align: center; 
+        outline: none;
+        border:none;
+        text-transform: uppercase;
+      }
+      .powered{
+        color: #656565;
+        font-size:11px;
+        font-weight: normal;
+      }
+      .powered span{
+        color: #27C492;
+        font-family: 'Karla', sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 16px;
+        margin-left:5px;
+      }
+      .signature{
+          width: max-content;
+      }
+      .signature img{
+          height:90px;
+          width:90px;
+      }
+      .signature .signature-text{
+        color: #656565;
+        font-family: 'Karla', sans-serif;
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 18px;
+        position: relative;
+        text-align: center;
+      }
+      .total-sub-heading{
+        color: #656565;
+        font-family: 'Karla', sans-serif;
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 24px;
+        text-align: right;
+        font-weight: lighter;
+      }
+      .total-heading{
+        color: #656565;
+        font-family: 'Karla', sans-serif;
+        font-size: 16px;
+        letter-spacing: 0;
+        line-height: 24px;
+        text-align: right;
+      }
+      .big{
+        color: #E27272;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 18px;
+      }
+      
+
+      @media (max-width:430px){
+          .invoice{
+              padding:15px;
+          }
+          .invoice .client-name{
+              font-size:15px;
+              margin-bottom:5px;
+          }
+          .invoice .invoice-info{
+              font-size: 12px;
+          }
+          .invoice .client-info{
+            font-size: 12px;
+            margin-bottom:0px;
+          }
+          .invoice .table{
+              margin-top:8vh;
+              margin-bottom:12vh;
+          }
+          .col-1{
+              padding-left:0px;
+              padding-right:0px;
+          }
+          .pay-now{
+              width:100%;
+          }.total-heading{
+              margin-left:5px;
+              font-size:14px;
+          }
+          .big{
+              font-size: 15px;
+          }
+          .reduce-padding{
+              padding-left: 0px;;
+          }
+      }
+  </style>
+  <body>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-2"></div>
+              <div class="col-lg-8">
+                  <div class="invoice">
+                      <div class="baseline">
+                          <img src="./logo-buffer.png" alt="">
+                          <h4 class="company-name">
+                              Company Name
+                          </h4>
+                      </div>
+                      <div class="row">
+                          <div class="col-6">
+                            <h6 class="invoice-info">
+                                Invoice No:
+                                <span>
+                                    1234567
+                                </span>
+                            </h6>
+                            <h6 class="invoice-info">
+                              Date:
+                              <span>
+                                  25-01-2021
+                              </span>
+                            </h6>
+                            <h6 class="invoice-info">
+                                  Due Date:
+                                  <span>
+                                      10-02-2021
+                                  </span>
+                              </h6>
+                          </div>
+                          <div class="col-6">
+                            <h4 class="client-name">
+                                Client Name
+                            </h4>
+                            <h6 class="client-info">
+                                client.email@domain.com
+                            </h6>
+                            <h6 class="client-info">
+                                Client Address
+                            </h6>
+                            <h6 class="client-info">
+                                Postcode, City
+                            </h6>
+                          </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                  <th scope="col" class="padding-less">DESCRIPTION</th>
+                                  <th scope="col">QTY</th>
+                                  <th scope="col">RATE</th>
+                                  <th scope="col">TAX</th>
+                                  <th scope="col">SUBTOTAL</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                    <td scope="row" class="padding-less">
+                                        Item Name
+                                    <br />
+                                    <span>
+                                        Item Description mein bohat maza aa raha hai. Uff yaar. 
+                                    </span>
+                                    </td>
+                                    <td>2</td>
+                                    <td>€100.00</td>
+                                    <td>21%</td>
+                                    <td>€242.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="padding-less" scope="row">
+                                        Item Name
+                                      <br />
+                                      <span>
+                                          Item Description mein bohat maza aa raha hai. Uff yaar. 
+                                      </span>
+                                    </td>
+                                    <td>2</td>
+                                    <td>€100.00</td>
+                                    <td>21%</td>
+                                    <td>€242.00</td>
+                                  </tr>
+                              </tbody>
+                        </table>
+                      </div>
+
+                  </div>
+                  <div class="footer">
+                    <div class="row" style="padding-left: 0px;padding-right: 0px;">
+                        <div class="col-6">
+                          <div class="signature">
+                              <img src="./signature.svg" alt="">
+                              <h6 class="signature-text">
+                                Signature
+                            </h6>
+                          </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 reduce-padding">
+                            <div class="to-right-space">
+                                <h6 class="total-sub-heading">
+                                    Subtotal
+                                </h6>
+                                <h3 class="total-heading">
+                                    €250.00
+                                </h3>
+                            </div>
+                            <div class="to-right-space">
+                                <h6 class="total-sub-heading">
+                                    Taxes
+                                </h6>
+                                <h3 class="total-heading">
+                                    €48.00
+                                </h3>
+                            </div>
+                            <div class="to-right-space" style="margin-top:20px;">
+                                <h6 class="total-sub-heading">
+                                    Total
+                                </h6>
+                                <h3 class="total-heading big">
+                                    €250.00
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="line"></div>
+                      <div class="row" style="padding-left: 0px;padding-right: 0px;">
+                          <div class="col-6">
+                            <h6 class="thank-you">
+                                Thank you note / instructions. Primum igitur quid iudicat quo minus id de homine sensibus reliqui nihil impedit quo minus id de voluptate.
+                              </h6>
+                          </div>
+                          <div class="col-1"></div>
+                          <div class="col-5">
+                              <div class="to-right">
+                                  <button class="pay-now">
+                                      Pay now
+                                  </button>
+                              </div>
+                              <div class="to-right">
+                                <h6 class="powered">
+                                    Powered By
+                                    <span>
+                                        Invoice Point
+                                    </span>
+                                </h6>
+                              </div>
+                          </div>
+                      </div>
+                    <div class="company">
+                        <h6 class="company-info">
+                            Company address, postcode, city
+                            <br>
+                            tel: +<span>123456789</span>, <span><a href="mailto:">email: email@domain.com</a></span>
+                        </h6>
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-2"></div>
+          </div>
+      </div>
+  </body>
+  </html>
